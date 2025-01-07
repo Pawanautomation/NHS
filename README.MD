@@ -1,6 +1,4 @@
-Here's the updated README.md incorporating all the testing information:
 
-```markdown
 # Blood Donation Eligibility Checker
 
 A web application that helps determine if a person is eligible to donate blood based on various health criteria and donation guidelines.
@@ -23,51 +21,61 @@ Before running this project, make sure you have the following installed:
 ## Installation
 
 1. Clone the repository:
-```bash
-git clone https://github.com/Pawanautomation/NHS.git
-```
+   ```bash
+   git clone https://github.com/Pawanautomation/NHS.git
+   ```
 
 2. Install dependencies:
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
 ## Running the Application
 
 1. Start the development server:
-```bash
-npm run dev
-```
+   ```bash
+   npm run dev
+   ```
 
 2. Open your browser and navigate to:
-```
-http://localhost:3000
-```
+   ```
+   http://localhost:3000
+   ```
 
 ## Testing
+
+### Running Unit Tests
+To run unit tests for individual components or utility functions:
+```bash
+npm run test
+```
+This command runs all tests specified in the `*.test.tsx` files using the configured testing framework (e.g., Jest).
+
+You can also run specific test files:
+```bash
+npm run test src/components/EligibilityQuestion.test.tsx
+```
+
+### Running End-to-End (E2E) Tests
+To run E2E tests that simulate real user interactions:
+```bash
+npm run test:e2e
+```
+This command uses Playwright or Cypress (depending on the project setup) to run the end-to-end tests.
+
+To run a specific E2E test:
+```bash
+npm run test:e2e -- spec tests/e2e/eligibility-flow.spec.ts
+```
 
 ### Running Storybook
 To test components in isolation:
 ```bash
 npm run storybook
 ```
-This will start Storybook at http://localhost:6006
+This will start Storybook at `http://localhost:6006`.
 
-### Testing Specific Components
-You can test specific questions without going through the entire flow:
-1. Using URL parameters:
-   ```
-   http://localhost:6006/path=/story/donor-eligibilityquestion--question-90?args=questionNumber:76
-   ```
-2. Using the Controls panel in Storybook
-3. Using specific story variations
-
-### Storybook Features
-- Interactive testing environment
-- Real-time component manipulation
-- Action logging for interactions
-- Visual feedback for state changes
-- Component isolation for focused testing
+---
 
 ## Project Structure
 
@@ -82,6 +90,9 @@ blood-donation-eligibility-checker/
 │   ├── utils/
 │   │   └── eligibilityRules.ts
 │   └── App.tsx
+├── tests/               # E2E test files
+│   ├── e2e/
+│   │   └── eligibility-flow.spec.ts
 ├── public/
 ├── .storybook/          # Storybook configuration
 ├── package.json
@@ -94,6 +105,8 @@ blood-donation-eligibility-checker/
 - Tailwind CSS for styling
 - Vite for build tooling
 - Storybook for component testing
+- Jest for unit testing
+- Playwright (or Cypress) for E2E testing
 - Lucide React for icons
 - shadcn/ui components
 
@@ -106,28 +119,45 @@ npm run dev
 # Run Storybook for component testing
 npm run storybook
 
-# Build the application
-npm run build
+# Run unit tests
+npm run test
 
-# Build Storybook
-npm run build-storybook
+# Run E2E tests
+npm run test:e2e
+
 ```
 
 ## Testing Strategy
 
-The application uses a component-based testing approach with Storybook:
-1. Isolated component testing
-2. Direct testing of specific questions
-3. Interactive state management
-4. Visual regression testing capabilities
-5. Action logging for interaction verification
+The application employs the following testing strategies:
+
+1. **Unit Testing**:
+   - Verifies the logic and behavior of individual components and utility functions.
+   - Example: Testing the `EligibilityQuestion` component for correct rendering and state updates.
+
+2. **End-to-End (E2E) Testing**:
+   - Tests the complete user flow, from entering health information to receiving eligibility feedback.
+   - Example: Simulating the user answering all 100 questions and verifying the final eligibility result.
+
+3. **Component-Based Testing with Storybook**:
+   - Allows isolated testing of UI components to ensure they behave as expected under various states.
+   - Example: Testing variations of the `Button` component (primary, secondary, disabled states).
 
 ### Test Cases Include:
-- Basic question rendering
-- Specific question scenarios (e.g., Question 90)
-- Progress bar functionality
-- Answer submission verification
-- UI state management
+- **Unit Tests**:
+  - Validation logic for eligibility rules
+  - Rendering and interaction of individual components
+  - Handling of different user inputs and edge cases
+
+- **E2E Tests**:
+  - Complete flow of eligibility questions
+  - Progress bar updates
+  - Error handling for incomplete or invalid inputs
+
+- **Storybook Tests**:
+  - Visual consistency of components
+  - Interactive testing with props and controls
+  - Action logging for component events
 
 ## Contributing
 
@@ -171,12 +201,5 @@ For comprehensive testing documentation:
 4. Check action logs for event verification
 ```
 
-This updated README includes:
-- Storybook testing information
-- Updated project structure
-- Testing strategy details
-- New development commands
-- Component testing documentation
-- Test case examples
-- URL parameter testing information
+---
 
